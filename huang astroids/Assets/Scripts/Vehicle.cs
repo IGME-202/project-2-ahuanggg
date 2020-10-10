@@ -5,7 +5,7 @@ using UnityEngine;
 public class Vehicle : MonoBehaviour
 {
 
-    Vector3 vehiclePosition = Vector3.zero;
+    Vector3 vehiclePosition;
 
     [SerializeField]
     Vector3 direction = Vector3.right;
@@ -17,8 +17,6 @@ public class Vehicle : MonoBehaviour
 
     [SerializeField]
     float turnSpeed = 0.0001f;
-
-    public float maxSpeed = 1f;
     
 
     Camera cam;
@@ -31,15 +29,25 @@ public class Vehicle : MonoBehaviour
         cam = Camera.main;
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;
+        vehiclePosition = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        // arrow key code for the spaceship
         if (Input.GetKey(KeyCode.UpArrow))
         {
             //accelerate or speed increases
-            speed += 0.01f;
+            if (speed < 3f)
+            {
+                speed += 0.01f;
+            }
+            else
+            {
+                speed = 3f;
+            }
         }
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
@@ -93,6 +101,16 @@ public class Vehicle : MonoBehaviour
         }
 
 
+       
+
+        
+
+
+        // if the user is holding space then make bullets but if not holding space push in nulls into the list so the bullets will despawn?
+
+
+
+        //code for the ship moving forward and stuff?
         direction = Quaternion.Euler(0, 0, turnSpeed) * direction;
 
         velocity = direction * speed;
@@ -103,7 +121,11 @@ public class Vehicle : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
 
-        if(vehiclePosition.x > 9)
+
+
+
+        // code for the camera and the vehicle moving out of the screen
+        if (vehiclePosition.x > 9)
         {
             vehiclePosition.x = -9;
         }
