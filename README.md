@@ -1,10 +1,8 @@
 # Project Documentation
 
--   Name: YOUR NAME
--   Section: ##
--   Assignment: PROJECT NAME
-
-**PLEASE REPLACE THE TEXT IN EACH SECTION WITH YOUR OWN DOCUMENTATION**
+-   Name: Andy Huang Ling
+-   Section: 05
+-   Assignment: PROJECT 2 Astroids
 
 ## Description
 
