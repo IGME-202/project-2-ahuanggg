@@ -6,34 +6,27 @@
 
 ## Description
 
-A brief explanation of your project
+This is a 2D game built from scratch in Unity. It is a replication of the popular game Asteroids.
 
 ## User Responsibilities
 
-What the user will need to do in the program
-Include user interaction: keys to press, mouse buttons to click/drag, etc.
+The user will need to use the arrow keys to move and the spacebar to shoot.
 
 ## Above and Beyond <kbd>OPTIONAL</kbd>
 
-What did you add or do in your program to earn above and beyond **bouns** points?
-
--   Be specific and explicit!
--   We are not mind readers.
-
-Bouns points for above and beyond will only be earned if it is listed in this file.
+I added a invincibility timer so that when an asteroid hits the spaceship, it will have time to get clear of the asteroid and not be penalized again for the same asteroid.
 
 ## Known Issues
 
-List any errors, lack of error checking, or specific information that I need to know to run your program
+No known issues.
 
 ## Requirements not completed
 
-If you did not complete a project requirement, notate that here
+I did not fufill the points system, the bullets hitting the asteroids, and the asteroids splitting up after being hit.
 
 ## Sources
 
--   List all project sources here – models, textures, sound clips, assets, etc.
-    -   include a link to the page and the author’s name
+https://www.pngegg.com/en/png-zvdhq - is the asteroid png that I used for my sprites
 
 ## Notes
 
