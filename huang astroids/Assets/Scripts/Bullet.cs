@@ -19,10 +19,6 @@ public class Bullet : MonoBehaviour
 
 
 
-    public GameObject man = GameObject.Find("Manager");
-    public CollisionManager manager = man.GetComponent<CollisionManager>();
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +27,6 @@ public class Bullet : MonoBehaviour
         direction = vehicle.direction;
         bulletPosition = vehicle.vehiclePosition;
 
-        
 
         
 
@@ -41,25 +36,28 @@ public class Bullet : MonoBehaviour
     void Update()
     {
 
-        ////checking for bullet collision with the meteor
-        //for (int i = 2; i < manager.objects.Count; ++i)
-        //{
-        //    if (manager.CheckForCollision(, manager.objects[i], manager.checkMethod))
-        //    {
-        //        manager.objects[i].color = Color.red;
+        GameObject man = GameObject.Find("Manager");
+        CollisionManager manager = man.GetComponent<CollisionManager>();
+
+        //checking for bullet collision with the meteor
+        for (int i = 2; i < manager.objects.Count; ++i)
+        {
+            if (manager.CheckForCollision(, manager.objects[i], manager.checkMethod))
+            {
+                manager.objects[i].color = Color.red;
 
 
                 
-        //        //objects[0].color = Color.red;
-        //    }
+                //objects[0].color = Color.red;
+            }
 
-        //    else
-        //    {
-        //        manager.objects[i].color = Color.white;
+            else
+            {
+                manager.objects[i].color = Color.white;
 
-        //        //objects[0].color = Color.white;
-        //    }
-        //}
+                //objects[0].color = Color.white;
+            }
+        }
 
 
 

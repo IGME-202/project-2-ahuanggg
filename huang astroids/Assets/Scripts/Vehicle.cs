@@ -28,6 +28,8 @@ public class Vehicle : MonoBehaviour
     public float height;
 
 
+    public List<SpriteRenderer> shots = new List<SpriteRenderer>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +50,8 @@ public class Vehicle : MonoBehaviour
             if (shotLimit == 1)
             {
                 GameObject shot = Instantiate(bullet, vehiclePosition, Quaternion.identity);
-
+                
+                
                 Destroy(shot, 1.5f);
                 Debug.Log(direction);
                 shotLimit = 0;

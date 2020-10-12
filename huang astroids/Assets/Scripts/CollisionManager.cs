@@ -126,7 +126,7 @@ public class CollisionManager : MonoBehaviour
                     && objectB.bounds.max.y > objectA.bounds.min.y
                     && objectB.bounds.min.y < objectB.bounds.max.y)
                 {
-                    isHitting = true;
+                    isHitting = true; 
                 }
                 break;
             case CollisionCheckMethod.Circle:
