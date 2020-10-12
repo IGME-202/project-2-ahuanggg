@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum CollisionCheckMethod
 {
@@ -11,9 +13,18 @@ public enum CollisionCheckMethod
 public class CollisionManager : MonoBehaviour
 {
     [SerializeField]
-    List<SpriteRenderer> objects = new List<SpriteRenderer>();
+    public List<SpriteRenderer> objects = new List<SpriteRenderer>();
+
+
 
     public CollisionCheckMethod checkMethod;
+
+    public float shipLife;
+    public float count;
+
+    public GameObject life1;
+    public GameObject life2;
+    public GameObject life3;
 
     // Update is called once per frame
     void Update()
@@ -33,15 +44,17 @@ public class CollisionManager : MonoBehaviour
 
         bool isPlayerHit = false;
 
-        for (int i = 1; i < objects.Count; ++i)
+        for (int i = 2; i < objects.Count; ++i)
         {
             if(CheckForCollision(objects[0], objects[i], checkMethod))
             {
                 objects[i].color = Color.red;
 
+
                 isPlayerHit = true;
                 //objects[0].color = Color.red;
             }
+            
             else
             {
                 objects[i].color = Color.white;
@@ -53,6 +66,46 @@ public class CollisionManager : MonoBehaviour
         if (isPlayerHit)
         {
             objects[0].color = Color.red;
+
+            //GameObject ship = GameObject.Find("Ship");
+            //Vehicle vehicle = ship.GetComponent<Vehicle>();
+            //vehicle.vehiclePosition = Vector3.zero;
+
+            count++; //count is set so high because the ship can be in the asteroid
+            if (count == 1)
+            {
+                shipLife++;
+
+                if (shipLife == 1)
+                {
+                    Text t = life1.GetComponent<Text>();
+                    t.text = " ";
+                }
+
+            }
+
+            if (count == 150)
+            {
+                shipLife++;
+                if (shipLife == 2)
+                {
+                    Text t = life2.GetComponent<Text>();
+                    t.text = " ";
+                }
+            }
+
+            if (count == 300)
+            {
+                shipLife++;
+                if (shipLife == 3)
+                {
+                    // restartes the game
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
+            }
+
+            
+
         }
         else
         {
@@ -61,7 +114,7 @@ public class CollisionManager : MonoBehaviour
 
     }
 
-    bool CheckForCollision(SpriteRenderer objectA, SpriteRenderer objectB, CollisionCheckMethod collisionCheck)
+    public bool CheckForCollision(SpriteRenderer objectA, SpriteRenderer objectB, CollisionCheckMethod collisionCheck)
     {
         bool isHitting = false;
 
@@ -85,6 +138,7 @@ public class CollisionManager : MonoBehaviour
 
         }
 
+       
 
         return isHitting;
     }

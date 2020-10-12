@@ -7,50 +7,95 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     GameObject bullet;
 
-    Vector3 vehiclePosition;
+    Vector3 bulletPosition;
 
     [SerializeField]
-    Vector3 direction = Vector3.right;
+    Vector3 direction = Vector3.zero;
 
     Vector3 velocity = Vector3.zero;
 
     [SerializeField]
     float speed = 0.075f;
 
-    GameObject shot;
 
-    bool hasStarted = false;
+
+    public GameObject man = GameObject.Find("Manager");
+    public CollisionManager manager = man.GetComponent<CollisionManager>();
+
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject ship = GameObject.Find("Ship");
+        Vehicle vehicle = ship.GetComponent<Vehicle>();
+        direction = vehicle.direction;
+        bulletPosition = vehicle.vehiclePosition;
+
         
+
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || hasStarted)
+
+        ////checking for bullet collision with the meteor
+        //for (int i = 2; i < manager.objects.Count; ++i)
+        //{
+        //    if (manager.CheckForCollision(, manager.objects[i], manager.checkMethod))
+        //    {
+        //        manager.objects[i].color = Color.red;
+
+
+                
+        //        //objects[0].color = Color.red;
+        //    }
+
+        //    else
+        //    {
+        //        manager.objects[i].color = Color.white;
+
+        //        //objects[0].color = Color.white;
+        //    }
+        //}
+
+
+
+
+
+
+
+
+        velocity = direction * speed;
+
+        bulletPosition += velocity;
+
+        transform.position = bulletPosition;
+
+        //transform.position += -transform.right * speed * Time.deltaTime;
+ 
+
+        // to make sure the asteroid loops back around
+        if (bulletPosition.x > 9)
         {
-            
-            shot = Instantiate(bullet, GameObject.Find("Ship").transform.position, Quaternion.identity) as GameObject;
-            
-            direction = GameObject.Find("Ship").transform.rotation * direction;
-            
-            shot.transform.Translate(direction * speed * Time.deltaTime);
-
-            hasStarted = true;
-
-            
-
-            Destroy(shot, 3f);
-
+            bulletPosition.x = -9;
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (bulletPosition.x < -9)
         {
-            hasStarted = false;
+            bulletPosition.x = 9;
         }
-        
+
+
+        if (bulletPosition.y > 5)
+        {
+            bulletPosition.y = -5;
+        }
+        if (bulletPosition.y < -5)
+        {
+            bulletPosition.y = 5;
+        }
 
 
     }

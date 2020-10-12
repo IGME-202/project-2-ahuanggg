@@ -14,7 +14,9 @@ public class Asteroid : MonoBehaviour
     Vector3 velocity = Vector3.zero;
 
     [SerializeField]
-    float speed = 0.05f;
+    float speed = 0.02f;
+
+ 
 
     Camera cam;
     public float width;
@@ -40,6 +42,8 @@ public class Asteroid : MonoBehaviour
 
         direction.x = xposition2;
         direction.y = yposition2;
+
+       
 
     }
 

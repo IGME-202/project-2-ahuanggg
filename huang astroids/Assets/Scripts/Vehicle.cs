@@ -5,23 +5,28 @@ using UnityEngine;
 public class Vehicle : MonoBehaviour
 {
 
-    Vector3 vehiclePosition;
+    public Vector3 vehiclePosition;
 
     [SerializeField]
-    Vector3 direction = Vector3.right;
+    public Vector3 direction;
 
-    Vector3 velocity = Vector3.zero;
+    public Vector3 velocity = Vector3.zero;
 
     [SerializeField]
     float speed = 0.00001f;
 
     [SerializeField]
     float turnSpeed = 0.0001f;
-    
+
+    [SerializeField]
+    GameObject bullet;
+
+    public float shotLimit;
 
     Camera cam;
     public float width;
     public float height;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,17 +41,35 @@ public class Vehicle : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            shotLimit++;
+
+            if (shotLimit == 1)
+            {
+                GameObject shot = Instantiate(bullet, vehiclePosition, Quaternion.identity);
+
+                Destroy(shot, 1.5f);
+                Debug.Log(direction);
+                shotLimit = 0;
+            }
+        }
+
+       
+
+
+
         // arrow key code for the spaceship
         if (Input.GetKey(KeyCode.UpArrow))
         {
             //accelerate or speed increases
-            if (speed < 3f)
+            if (speed < 1f)
             {
-                speed += 0.01f;
+                speed += 0.005f;
             }
             else
             {
-                speed = 3f;
+                speed = 1f;
             }
         }
         if (Input.GetKeyUp(KeyCode.UpArrow))
@@ -121,8 +144,7 @@ public class Vehicle : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
 
-
-
+      
 
         // code for the camera and the vehicle moving out of the screen
         if (vehiclePosition.x > 9)
