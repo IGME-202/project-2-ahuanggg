@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     Vector3 velocity = Vector3.zero;
 
     [SerializeField]
-    float speed = 0.075f;
+    float speed = 1f;
 
 
 
@@ -36,28 +36,28 @@ public class Bullet : MonoBehaviour
     void Update()
     {
 
-        GameObject man = GameObject.Find("Manager");
-        CollisionManager manager = man.GetComponent<CollisionManager>();
+        //GameObject man = GameObject.Find("Manager");
+        //CollisionManager manager = man.GetComponent<CollisionManager>();
 
-        //checking for bullet collision with the meteor
-        for (int i = 2; i < manager.objects.Count; ++i)
-        {
-            if (manager.CheckForCollision(, manager.objects[i], manager.checkMethod))
-            {
-                manager.objects[i].color = Color.red;
+        ////checking for bullet collision with the meteor
+        //for (int i = 2; i < manager.objects.Count; ++i)
+        //{
+        //    if (manager.CheckForCollision(, manager.objects[i], manager.checkMethod))
+        //    {
+        //        manager.objects[i].color = Color.red;
 
 
                 
-                //objects[0].color = Color.red;
-            }
+        //        //objects[0].color = Color.red;
+        //    }
 
-            else
-            {
-                manager.objects[i].color = Color.white;
+        //    else
+        //    {
+        //        manager.objects[i].color = Color.white;
 
-                //objects[0].color = Color.white;
-            }
-        }
+        //        //objects[0].color = Color.white;
+        //    }
+        //}
 
 
 

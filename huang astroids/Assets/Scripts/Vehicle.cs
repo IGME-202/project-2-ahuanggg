@@ -52,7 +52,7 @@ public class Vehicle : MonoBehaviour
                 GameObject shot = Instantiate(bullet, vehiclePosition, Quaternion.identity);
                 
                 
-                Destroy(shot, 1.5f);
+                Destroy(shot, 0.5f);
                 Debug.Log(direction);
                 shotLimit = 0;
             }
@@ -66,13 +66,13 @@ public class Vehicle : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             //accelerate or speed increases
-            if (speed < 1f)
+            if (speed < 0.15f)
             {
                 speed += 0.005f;
             }
             else
             {
-                speed = 1f;
+                speed = 0.15f;
             }
         }
         if (Input.GetKeyUp(KeyCode.UpArrow))
